@@ -1,12 +1,12 @@
 # -*-coding:Latin-1 -*
-'''
+"""
 @author: Renaud Laine
 
 This is a script I wrote to make a UserIterface for an optimization tool using
 Computer Fluid Dynamics calculations. The goal was to write the proper batch
 file to launch the desired optimization study. Many options are available as to
 what variables should be studied and with what type of algorithm.
-'''
+"""
 
 
 from subprocess import Popen
@@ -166,16 +166,16 @@ class Interface(tk.Frame):
 
     # Methods
     def changeSelectedVar(self,*args,**kwargs):
-        '''
+        """
         Choose the variables for the study
-        '''
+        """
         self.selectedVar = [v for i,v in enumerate(self.variables) if i in self.varList.curselection()]
         self.updateInputs()
 
     def updateInputs(self):
-        '''
+        """
         Update which inputs can be written in
-        '''
+        """
         for setting in self.varSettings:
             for variable in self.variables:
                 if variable not in self.selectedVar:
@@ -184,9 +184,9 @@ class Interface(tk.Frame):
                     self.varSettingInput[setting][variable]['state']='normal'
         
     def launch(self):
-        '''
+        """
         Write the batch file with all the desired preferences
-        '''
+        """
         file='environment\n\ttabular_data\n\t\ttabular_data_file = \'DesignPoints.dat\''
         if self.methodType=='local':
             file+='\n\nmethod'
@@ -225,18 +225,18 @@ class Interface(tk.Frame):
         window.quit()
 
     def setMethod(self,*args,**kwargs):
-        '''
+        """
         Choose the study method
-        '''
+        """
         method = self.radio1.get()
         self.method = method
         self.updateMethodType()
         self.setMethodType()
 
     def updateMethodType(self, ):
-        '''
+        """
         Update the display according to study method
-        '''
+        """
         if self.method=='optimStudy':
             self.optimTypeLabel.grid()
             self.optimType1.grid()
@@ -257,9 +257,9 @@ class Interface(tk.Frame):
             self.optimType3.grid_remove()
 
     def setMethodType(self,*args,**kwargs):
-        '''
+        """
         Set study method type
-        '''
+        """
         if self.method=='optimStudy':
             self.methodType = self.radio2.get()
         else:
@@ -267,9 +267,9 @@ class Interface(tk.Frame):
         self.setUsedSettings()
 
     def setUsedSettings(self):
-        '''
+        """
         Update display according to study method type
-        '''
+        """
         if self.methodType=='local':
             self.usedVarSettings=["loBound","upBound","initPoint","convTol","maxIter"]
             self.usedMetSettings=["maxIter","convTol"]
@@ -291,9 +291,9 @@ class Interface(tk.Frame):
         self.updateSettings()
 
     def updateSettings(self):
-        '''
+        """
         Update available settings acording to study method and method type
-        '''
+        """
         for setting in self.varSettings:
             for variable in self.variables:
                 if setting not in self.usedVarSettings:
