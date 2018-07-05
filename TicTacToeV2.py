@@ -61,11 +61,11 @@ class Tictactoe(tk.Frame):
         self.resetbtn.grid(row = 14, column = 1, columnspan = 11)
             
     def activatebutton(self, i, j):
-        '''
+        """
         This method memorizes what was played, writes it on the board,
         activates next playable grid, calls the victory check and stops the
         game if there is a winner
-        '''
+        """
         if self.text[i][j].get() == '':
             if self.player == 1:
                 s = 'O'
@@ -129,9 +129,9 @@ class Tictactoe(tk.Frame):
                 self.textwin.set('Player {} won.'.format(swin))
             
     def reset(self):
-        '''
+        """
         This method resets the board
-        '''
+        """
         for i in range(9):
             for j in range(9):
                 self.text[i][j].set('')
@@ -140,9 +140,9 @@ class Tictactoe(tk.Frame):
         self.moves = np.zeros((9, 9))
                 
     def checkwin(self, i, j):
-        '''
+        """
         This method cheks whether the last move played was a winning move
-        '''
+        """
         square = self.moves[3 * (i // 3) : 3 * (i // 3) + 3, 3 * (j // 3) : 3 * (j // 3) + 3]
         for h in range(3):
             win = self.checkline(square[h,:])
@@ -161,6 +161,9 @@ class Tictactoe(tk.Frame):
         return 0
         
     def checkline(self, a):
+        """
+        This method checks whether a list of three has three times 1 or 2
+        """
         if a[0] == a[1] and np.sum(a) > 0 and np.sum(a) % 3 == 0:
             return a[0]
         return 0
