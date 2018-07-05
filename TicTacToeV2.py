@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@author: Renaud
+@author: Renaud Laine
 
 This is the electronic version of a game I used to play when I lived in South
 Korea. It is a game of Tic tac toe with 9 grids, each time a player plays, it
